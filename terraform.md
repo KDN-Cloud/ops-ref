@@ -153,6 +153,82 @@ provider "aws" {
 }
 ```
 
+### vultr provider
+
+```hcl
+terraform {
+  required_providers {
+    vultr = {
+      source  = "vultr/vultr"
+      version = "~> 2.0"
+    }
+  }
+}
+
+# API key via environment variable (recommended — never hardcode)
+# export VULTR_API_KEY="your_api_key_here"
+
+provider "vultr" {
+  api_key     = var.vultr_api_key   # or omit and use VULTR_API_KEY env var
+  rate_limit  = 100                 # ms between API calls (default: 500)
+  retry_limit = 3
+}
+
+# common resources
+resource "vultr_instance" "web" {
+  plan      = "vc2-1c-1gb"          # 1 vCPU, 1GB RAM
+  region    = "lax"                  # Los Angeles
+  os_id     = 1743                   # Ubuntu 22.04 LTS (check: terraform plan)
+  label     = "web-server"
+  hostname  = "web-01"
+  tag       = "production"
+
+  ssh_key_ids = [vultr_ssh_key.default.id]
+
+  user_data = file("${path.module}/cloud-init.yaml")
+}
+
+resource "vultr_ssh_key" "default" {
+  name    = "default"
+  ssh_key = file("~/.ssh/id_ed25519.pub")
+}
+
+resource "vultr_firewall_group" "default" {
+  description = "default firewall"
+}
+
+resource "vultr_firewall_rule" "ssh" {
+  firewall_group_id = vultr_firewall_group.default.id
+  protocol          = "tcp"
+  ip_type           = "v4"
+  subnet            = "0.0.0.0"
+  subnet_size       = 0
+  port              = "22"
+  notes             = "allow ssh"
+}
+
+# look up available plans and regions
+data "vultr_plan" "starter" {
+  filter {
+    name   = "vcpu_count"
+    values = ["1"]
+  }
+}
+
+data "vultr_region" "lax" {
+  filter {
+    name   = "id"
+    values = ["lax"]
+  }
+}
+
+variable "vultr_api_key" {
+  type      = string
+  sensitive = true
+  default   = ""   # leave blank — set via VULTR_API_KEY env var or .tfvars
+}
+```
+
 ### variables
 
 ```hcl
