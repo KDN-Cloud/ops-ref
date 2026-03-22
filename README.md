@@ -1,22 +1,28 @@
-# cheatsheets
+# ops-ref
 
-Personal quick-reference sheets for tools used daily across KDN Lab and dev machines.
+Quick-reference sheets for git, vim, bash, docker, and beyond.
 
-## Contents
+Command refs for tools used daily across KDN Lab and dev machines — kept concise, accurate, and git-backed.
 
-| File | Topic |
-|------|-------|
+## Command Refs
+
+| File | Coverage |
+|------|----------|
 | [git.md](git.md) | Git — staging, branching, remotes, history rewriting |
 | [vim.md](vim.md) | Vim & Neovim — motions, splits, plugins, config |
 | [bash.md](bash.md) | Bash & Shell — scripting, loops, redirects, shortcuts |
 | [docker.md](docker.md) | Docker & Compose — containers, volumes, networking, Dockhand |
+| [terraform.md](terraform.md) | Terraform — init, plan, apply, state, modules, expressions |
+| [kubernetes.md](kubernetes.md) | Kubernetes — kubectl, workloads, networking, RBAC, Helm |
+| [ldap.md](ldap.md) | LDAP — search, modify, users, groups, schemas, troubleshooting |
 
 ## Usage
 
-Clone to each machine and symlink or open directly in your editor.
+Clone to each machine and open directly in your editor or terminal.
 
 ```bash
-git clone git@git.aklein.me:ak/cheatsheets.git ~/projects/cheatsheets
+git clone https://github.com/KDN-Cloud/ops-ref.git ~/projects/ops-ref
 ```
 
-Mirrored to private GitHub via Gitea push mirror.
+Mirrored from Gitea via push mirror. Canonical public repo: [github.com/KDN-Cloud/ops-ref](https://github.com/KDN-Cloud/ops-ref).
+
