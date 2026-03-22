@@ -307,22 +307,80 @@ docker compose pull && docker compose up -d
 
 ---
 
-## dockhand (fnsys/dockhand)
+## dockhand & hawser agent (fnsys/dockhand)
 
-> Orchestration layer used in KDN Lab. Hawser agents run per-VM with unique `AGENT_NAME` values.
+> Dockhand is the container orchestration layer used in KDN Lab. Hawser is the per-host agent that connects each VM back to the Dockhand server. Each host runs one Hawser container with a unique `AGENT_NAME`.
+
+### hawser agent — docker run
 
 ```bash
-# Dockhand manages stacks defined in compose files
-# Stack name comes from the Dockhand config, not the compose `name:` field
-# e.g. rxv4 stack deploys regardless of compose name: field
-
-# Hawser agent env vars (per host)
-AGENT_NAME=homelab-vm1       # unique per VM — used for identity across restarts
-DOCKHAND_URL=https://...     # Dockhand server URL
-AGENT_TOKEN=...              # auth token
+docker run -d \
+  --name hawser \
+  --restart unless-stopped \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -p 2376:2376 \
+  -e TOKEN=<agent-token> \
+  -e AGENT_NAME=<unique-hostname> \
+  ghcr.io/finsys/hawser:latest
 ```
 
-Key behaviors to remember:
-- Stack names in Dockhand are independent of the compose `name:` field
-- Each Hawser agent must have a unique `AGENT_NAME` — reusing names causes identity conflicts after restarts
-- Stacks live under `envs/homelab-stacks/` (homelab) or `envs/vps-stacks/` (VPS) in the kdnlab repo
+### hawser agent — docker compose (recommended)
+
+Store as `compose.yml` alongside an `.env` file per host. Managed by Dockhand itself or started manually on first boot.
+
+```yaml
+# compose.yml
+services:
+  hawser:
+    image: ghcr.io/finsys/hawser:latest
+    container_name: hawser
+    restart: unless-stopped
+    ports:
+      - "2376:2376"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TOKEN=${HAWSER_TOKEN}
+      - AGENT_NAME=${AGENT_NAME}
+```
+
+```bash
+# .env (per host — never commit this file, add .env to .gitignore)
+HAWSER_TOKEN=        # generate with: `openssl rand -base64 32`
+AGENT_NAME={UNIQUE_NAME}
+```
+
+> **Generating a token:** run `openssl rand -base64 32` and paste the output as `HAWSER_TOKEN`. Generate a unique token per host and register it in the Dockhand server UI under the corresponding agent.
+
+```bash
+# start
+docker compose up -d
+
+# follow logs
+docker compose logs -f hawser
+```
+
+### update hawser agent (recreate)
+
+```bash
+# stop and remove the existing container
+docker stop hawser && docker rm hawser
+
+# pull latest image
+docker pull ghcr.io/finsys/hawser:latest
+
+# restart via compose (preferred)
+docker compose up -d
+
+# or restart via run script if not using compose
+bash hawser-agent-run.sh
+```
+
+### key behaviors
+
+- `AGENT_NAME` must be **unique per host** — reusing names causes identity conflicts after restarts
+- Stack names in Dockhand are independent of the compose `name:` field (e.g. a stack named `rxv4` in Dockhand deploys regardless of what `name:` is set to in the compose file)
+- Stacks live under `envs/homelab-stacks/` (homelab VMs) or `envs/vps-stacks/` (Vultr VPS) in the kdnlab repo
+- The Docker socket mount (`/var/run/docker.sock`) is required — Hawser manages containers on the host on behalf of Dockhand
+- Port `2376` is the Hawser agent listener — ensure it's reachable from the Dockhand server
+
