@@ -1,4 +1,4 @@
-# vim / neovim cheat sheet
+# vim / neovim command ref
 
 > Most of this applies to both Vim and Neovim. Neovim-specific sections are marked **[nvim]**.
 

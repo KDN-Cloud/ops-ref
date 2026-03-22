@@ -1,4 +1,4 @@
-# docker / compose cheat sheet
+# docker / compose command ref
 
 > Includes notes on **Dockhand** (`fnsys/dockhand`) where relevant to KDN Lab.
 

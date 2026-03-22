@@ -1,4 +1,4 @@
-# bash / shell cheat sheet
+# bash / shell command ref
 
 ## navigation & shortcuts (readline)
 

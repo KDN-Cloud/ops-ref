@@ -1,4 +1,4 @@
-# git cheat sheet
+# git command ref
 
 ## setup & config
 
