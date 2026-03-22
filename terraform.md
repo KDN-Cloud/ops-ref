@@ -128,7 +128,7 @@ project/
 
 ## configuration syntax
 
-### providers
+### aws provider
 
 ```hcl
 terraform {
