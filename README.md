@@ -21,8 +21,9 @@ Command refs for tools used daily across KDN Lab and dev machines — kept conci
 
 Clone to each machine and open directly in your editor or terminal.
 
-```bash
-git clone [https://github.com/KDN-Cloud/ops-ref.git](https://github.com/KDN-Cloud/ops-ref.git) ~/projects/ops-ref
+```
+git clone https://github.com/KDN-Cloud/ops-ref.git
+```
 
 Mirrored from Gitea via push mirror. Public repo: [github.com/KDN-Cloud/ops-ref](https://github.com/KDN-Cloud/ops-ref).
 
