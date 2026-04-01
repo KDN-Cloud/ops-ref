@@ -25,5 +25,4 @@ Clone to each machine and open directly in your editor or terminal.
 git clone https://github.com/KDN-Cloud/ops-ref.git
 ```
 
-Mirrored from Gitea via push mirror. Public repo: [github.com/KDN-Cloud/ops-ref](https://github.com/KDN-Cloud/ops-ref).
-
+Mirrored from Gitea via push mirror.
