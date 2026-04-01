@@ -12,6 +12,7 @@ Command refs for tools used daily across KDN Lab and dev machines — kept conci
 | [vim.md](vim.md) | Vim & Neovim — motions, splits, plugins, config |
 | [bash.md](bash.md) | Bash & Shell — scripting, loops, redirects, shortcuts |
 | [docker.md](docker.md) | Docker & Compose — containers, volumes, networking, Dockhand |
+| [ansible.md](ansible.md) | Ansible — ad-hoc, playbooks, vault, inventory, galaxy |
 | [terraform.md](terraform.md) | Terraform — init, plan, apply, state, modules, expressions |
 | [kubernetes.md](kubernetes.md) | Kubernetes — kubectl, workloads, networking, RBAC, Helm |
 | [ldap.md](ldap.md) | LDAP — search, modify, users, groups, schemas, troubleshooting |
@@ -21,8 +22,8 @@ Command refs for tools used daily across KDN Lab and dev machines — kept conci
 Clone to each machine and open directly in your editor or terminal.
 
 ```bash
-git clone https://github.com/KDN-Cloud/ops-ref.git ~/projects/ops-ref
-```
+git clone [https://github.com/KDN-Cloud/ops-ref.git](https://github.com/KDN-Cloud/ops-ref.git) ~/projects/ops-ref
 
+---
 Mirrored from Gitea via push mirror. Public repo: [github.com/KDN-Cloud/ops-ref](https://github.com/KDN-Cloud/ops-ref).
 
