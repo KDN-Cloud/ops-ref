@@ -24,6 +24,5 @@ Clone to each machine and open directly in your editor or terminal.
 ```bash
 git clone [https://github.com/KDN-Cloud/ops-ref.git](https://github.com/KDN-Cloud/ops-ref.git) ~/projects/ops-ref
 
----
 Mirrored from Gitea via push mirror. Public repo: [github.com/KDN-Cloud/ops-ref](https://github.com/KDN-Cloud/ops-ref).
 
