@@ -38,7 +38,7 @@ CrowdSec Distributed Mesh: Central LAPI & Remote Bouncer Operations.
 | **LAPI status** | `cscli lapi status` |
 | **Version info** | `cscli version` |
 
-## Docker exec Variants (Gatekeeper NUC)
+## Docker exec Variants (Gatekeeper)
 Prefix any `cscli` command with `docker exec crowdsec` when running from the host shell:
 
 | Action | Command |
