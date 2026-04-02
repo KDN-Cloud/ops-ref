@@ -62,6 +62,15 @@ Prefix any `cscli` command with `docker exec crowdsec` when running from the hos
 
 > **Note:** For Machine Registration, use the generated `password` in the remote node's `AGENT_PASSWORD` environment variable. For Bouncer Registration, use the `api_key` in the remote node's `.yaml` config.
 
+### Recommended Collections for Nodes
+| Collection | Purpose |
+| :--- | :--- |
+| **linux / sshd** | Base OS and remote access protection |
+| **docker** | Container-level security and API protection |
+| **whitelist-good-actors** | Prevents banning search engines/known good services |
+| **iptables / nftables** | Monitors firewall logs for ban persistence |
+| **base-http-scenarios** | Generic web attack detection for hosted apps |
+
 ## Native Bouncer
 | Action | Command |
 | :--- | :--- |
