@@ -16,6 +16,7 @@ Command refs for tools used daily across KDN Lab and dev machines — kept conci
 | [terraform.md](terraform.md) | Terraform — init, plan, apply, state, modules, expressions |
 | [kubernetes.md](kubernetes.md) | Kubernetes — kubectl, workloads, networking, RBAC, Helm |
 | [ldap.md](ldap.md) | LDAP — search, modify, users, groups, schemas, troubleshooting |
+| [crowdsec.md](crowdsec.md) | CrowdSec — Distributed LAPI engine, multi-node agents, bouncer enforcement, & remediation |
 
 ## Usage
 
