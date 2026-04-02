@@ -52,6 +52,16 @@ Prefix any `cscli` command with `docker exec crowdsec` when running from the hos
 | **Update hub** | `docker exec crowdsec cscli hub update && docker exec crowdsec cscli hub upgrade` |
 | **Tail CrowdSec logs** | `docker logs -f crowdsec` |
 
+## Node Enrollment (LAPI Central)
+*Run these on the Gatekeeper (NUC) to register a new remote node (e.g., Raspberry Pi).*
+
+| Action | Command |
+| :--- | :--- |
+| **Register Agent (Machine)** | `docker exec crowdsec cscli machines add <node-name> --auto -f -` |
+| **Register Bouncer (Key)** | `docker exec crowdsec cscli bouncers add <node-name>` |
+
+> **Note:** For Machine Registration, use the generated `password` in the remote node's `AGENT_PASSWORD` environment variable. For Bouncer Registration, use the `api_key` in the remote node's `.yaml` config.
+
 ## Native Bouncer
 | Action | Command |
 | :--- | :--- |
@@ -66,4 +76,5 @@ Prefix any `cscli` command with `docker exec crowdsec` when running from the hos
 ### Quick Ref Notes
 * **Connection Testing:** The `-t` flag is your best friend after an Ansible run. It verifies that the VPS can actually reach the **Gatekeeper (NUC)** over the WireGuard tunnel at `10.69.0.1`.
 * **Ruleset Verification:** If the service is running but you suspect it isn't blocking, the `sudo nft list ruleset` command will confirm if the active drop list is actually populated with the IP sets from the LAPI.
+* **Recommended Collections:** For distributed nodes, include: `crowdsecurity/linux`, `crowdsecurity/sshd`, `crowdsecurity/whitelist-good-actors`, `crowdsecurity/iptables`, and `crowdsecurity/docker`.
 
