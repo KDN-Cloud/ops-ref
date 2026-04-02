@@ -66,4 +66,4 @@ Prefix any `cscli` command with `docker exec crowdsec` when running from the hos
 ### Quick Ref Notes
 * **Connection Testing:** The `-t` flag is your best friend after an Ansible run. It verifies that the VPS can actually reach the **Gatekeeper (NUC)** over the WireGuard tunnel at `10.69.0.1`.
 * **Ruleset Verification:** If the service is running but you suspect it isn't blocking, the `sudo nft list ruleset` command will confirm if the active drop list is actually populated with the IP sets from the LAPI.
-*
+
