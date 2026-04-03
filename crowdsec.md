@@ -66,7 +66,7 @@ Prefix any `cscli` command with `docker exec crowdsec` when running from the hos
 | Collection | Purpose |
 | :--- | :--- |
 | **linux / sshd** | Base OS and remote access protection |
-| **docker** | Container-level security and API protection |
+| **docker-compose** | Container-level security and API protection |
 | **whitelist-good-actors** | Prevents banning search engines/known good services |
 | **iptables / nftables** | Monitors firewall logs for ban persistence |
 | **base-http-scenarios** | Generic web attack detection for hosted apps |
