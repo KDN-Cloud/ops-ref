@@ -28,3 +28,7 @@ git clone https://github.com/KDN-Cloud/ops-ref.git
 ```
 
 Mirrored from Gitea via push mirror.
+
+> [!NOTE]
+> For on-demand cheat sheets without leaving the terminal, see [cheat.sh](https://github.com/chubin/cheat.sh) — query any command or topic via `curl cht.sh/<topic>` or the `cht.sh` CLI client.
+
