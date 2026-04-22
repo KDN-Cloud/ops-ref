@@ -51,10 +51,10 @@ helm repo update
 helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
   --create-namespace \
-  --set hostname=rancher.lab.kdn.cloud \     # your DNS entry
+  --set hostname=rancher.example.com \        # your DNS entry
   --set bootstrapPassword=admin \             # change this immediately after login
   --set ingress.tls.source=letsEncrypt \
-  --set letsEncrypt.email=ak@aklein.pro \
+  --set letsEncrypt.email=admin@example.com \
   --set letsEncrypt.ingress.class=traefik    # k3s uses traefik by default
 
 # watch rollout
@@ -101,10 +101,10 @@ systemctl start rke2-agent.service
 helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
   --create-namespace \
-  --set hostname=rancher.lab.kdn.cloud \
+  --set hostname=rancher.example.com \
   --set bootstrapPassword=admin \
   --set ingress.tls.source=letsEncrypt \
-  --set letsEncrypt.email=ak@aklein.pro
+  --set letsEncrypt.email=admin@example.com
 ```
 
 ---
@@ -126,7 +126,7 @@ Options:
 ```bash
 # import an existing cluster (run on the target cluster)
 # Rancher gives you this command — it looks like:
-kubectl apply -f https://rancher.lab.kdn.cloud/v3/import/<token>.yaml
+kubectl apply -f https://rancher.example.com/v3/import/<token>.yaml
 ```
 
 ---
@@ -139,7 +139,7 @@ curl -sfL https://github.com/rancher/cli/releases/latest/download/rancher-linux-
 mv rancher /usr/local/bin/
 
 # login
-rancher login https://rancher.lab.kdn.cloud --token <api-token>
+rancher login https://rancher.example.com --token <api-token>
 
 # list clusters
 rancher clusters ls
